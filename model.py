@@ -673,6 +673,7 @@ class DataSource(Base):
     OA_CONTENT_SERVER = "Library Simplified Open Access Content Server"
     PRESENTATION_EDITION = "Presentation edition generator"
     INTERNAL_PROCESSING = "Library Simplified Internal Process"
+    THETA = "Theta"
 
     DEPRECATED_NAMES = {
         "3M" : BIBLIOTHECA
@@ -884,6 +885,7 @@ class DataSource(Base):
                 (cls.NOVELIST, False, True, Identifier.NOVELIST_ID, None),
                 (cls.PRESENTATION_EDITION, False, False, None, None),
                 (cls.INTERNAL_PROCESSING, True, False, None, None),
+                (cls.THETA, True, False, Identifier.THETA_ID, 0),
         ):
 
             extra = dict()
@@ -1199,6 +1201,7 @@ class Identifier(Base):
     URI = "URI"
     DOI = "DOI"
     UPC = "UPC"
+    THETA_ID = "Theta ID"
 
     DEPRECATED_NAMES = {
         "3M ID" : BIBLIOTHECA_ID
@@ -1207,7 +1210,7 @@ class Identifier(Base):
 
     LICENSE_PROVIDING_IDENTIFIER_TYPES = [
         THREEM_ID, OVERDRIVE_ID, AXIS_360_ID,
-        GUTENBERG_ID
+        GUTENBERG_ID, THETA_ID
     ]
 
     URN_SCHEME_PREFIX = "urn:librarysimplified.org/terms/id/"
