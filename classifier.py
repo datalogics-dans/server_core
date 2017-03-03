@@ -53,6 +53,7 @@ class Classifier(object):
 
     GRADE_LEVEL = "Grade level" # "1-2", "Grade 4", "Kindergarten", etc.
     AGE_RANGE = "schema:typicalAgeRange" # "0-2", etc.
+    THETA_AUDIENCE = "Theta Audience"
     AXIS_360_AUDIENCE = "Axis 360 Audience"
 
     # We know this says something about the audience but we're not sure what.
@@ -3925,6 +3926,7 @@ Classifier.classifiers[Classifier.GRADE_LEVEL] = GradeLevelClassifier
 Classifier.classifiers[Classifier.FREEFORM_AUDIENCE] = FreeformAudienceClassifier
 Classifier.classifiers[Classifier.GUTENBERG_BOOKSHELF] = GutenbergBookshelfClassifier
 Classifier.classifiers[Classifier.INTEREST_LEVEL] = InterestLevelClassifier
+Classifier.classifiers[Classifier.THETA_AUDIENCE] = AgeOrGradeClassifier
 Classifier.classifiers[Classifier.AXIS_360_AUDIENCE] = AgeOrGradeClassifier
 Classifier.classifiers[Classifier.SIMPLIFIED_GENRE] = SimplifiedGenreClassifier
 Classifier.classifiers[Classifier.SIMPLIFIED_FICTION_STATUS] = SimplifiedFictionClassifier
