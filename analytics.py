@@ -18,7 +18,8 @@ class Analytics(object):
         # because we're running its unit tests.
         package_name = ''
 
-    DEFAULT_PROVIDERS = [package_name + "local_analytics_provider"]
+    #DEFAULT_PROVIDERS = [package_name + "local_analytics_provider"]
+    DEFAULT_PROVIDERS = ["api.google_analytics_provider"] 
 
     @classmethod
     def instance(cls):
@@ -56,6 +57,8 @@ class Analytics(object):
     @classmethod
     def load_providers_from_config(cls, config):
         policies = config.get(Configuration.POLICIES, {})
+        print ("XXXXX loaded providers: " + ', '.join(cls.DEFAULT_PROVIDERS))
+        print ("XXXXX and the policy is: " + Configuration.ANALYTICS_POLICY)
         return policies.get(Configuration.ANALYTICS_POLICY, cls.DEFAULT_PROVIDERS)
 
 

@@ -2698,7 +2698,6 @@ class Edition(Base):
         if distance > 0:
             identifier_ids = Identifier.recursively_equivalent_identifier_ids(
                 _db, identifier_ids, distance, threshold=threshold)
-
         return Identifier.best_cover_for(_db, identifier_ids)
 
     @property
@@ -2986,6 +2985,7 @@ class Work(Base):
         DataSource.GUTENBERG: 0,
         DataSource.OVERDRIVE: 0.4,
         DataSource.THREEM : 0.65,
+        DataSource.THETA: 0,
         DataSource.AXIS_360: 0.65,
         DataSource.STANDARD_EBOOKS: 0.8,
         DataSource.UNGLUE_IT: 0.4,
@@ -4879,6 +4879,7 @@ class Subject(Base):
         FAST, OVERDRIVE, THREEM, BISAC, TAG
     ]
 
+    THETA_AUDIENCE = Classifier.THETA_AUDIENCE
     AXIS_360_AUDIENCE = Classifier.AXIS_360_AUDIENCE
     GRADE_LEVEL = Classifier.GRADE_LEVEL
     AGE_RANGE = Classifier.AGE_RANGE
@@ -5189,6 +5190,7 @@ class Classification(Base):
         DataSource.LIBRARY_STAFF: 1.0,        
         (DataSource.METADATA_WRANGLER, Subject.AGE_RANGE) : 1.0,
 
+        Subject.THETA_AUDIENCE : 0.9,
         Subject.AXIS_360_AUDIENCE : 0.9,
         (DataSource.OVERDRIVE, Subject.INTEREST_LEVEL) : 0.9,
         (DataSource.OVERDRIVE, Subject.OVERDRIVE) : 0.9, # But see below

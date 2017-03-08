@@ -158,9 +158,7 @@ class ExternalSearchIndex(object):
         )
         if fields is not None:
             search_args['fields'] = fields
-        #print "Args looks like: %r" % args
         results = self.search(**search_args)
-        #print "Results: %r" % results
         return results
 
     def make_query(self, query_string):
