@@ -111,7 +111,10 @@ class OverdriveAPI(object):
 
     WEBSITE_ID = "website_id"
 
-   
+    # This value is required to set up some, but not all, libraries and only for the
+    # circulation manager component of SimplyE
+    ILS_NAME = "ils_name"
+
     def __init__(self, collection):
         if collection.protocol != ExternalIntegration.OVERDRIVE:
             raise ValueError(
@@ -135,12 +138,16 @@ class OverdriveAPI(object):
         self.client_key = collection.external_integration.username.encode("utf8")
         self.client_secret = collection.external_integration.password.encode("utf8")
         self.website_id = collection.external_integration.setting(self.WEBSITE_ID).value.encode("utf8")
+        self.ils_name = collection.external_integration.setting(self.ILS_NAME).value.encode("utf8")
 
         if (not self.client_key or not self.client_secret or not self.website_id
             or not self.library_id):
             raise CannotLoadConfiguration(
                 "Overdrive configuration is incomplete."
             )
+
+        if not self.ils_name:
+            self.ils_name = "default"
 
         # Get set up with up-to-date credentials from the API.
         self.check_creds()
@@ -419,6 +426,7 @@ class MockOverdriveAPI(OverdriveAPI):
         integration.username = u'a'
         integration.password = u'b'
         integration.set_setting('website_id', 'd')
+        integration.set_setting(OverdriveAPI.ILS_NAME, 'e')
         library.collections.append(collection)
         return collection
     
